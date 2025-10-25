@@ -23,9 +23,11 @@ def question2a():
     """
       Prefer the close exit (+1), risking the cliff (-10).
     """
-    answerDiscount = None
-    answerNoise = None
-    answerLivingReward = None
+    # Policy: E E N _ _ (go East twice, then North to +1)
+    # Try very low discount to prioritize immediate rewards
+    answerDiscount = 0.1
+    answerNoise = 0.0
+    answerLivingReward = 0.0
     return answerDiscount, answerNoise, answerLivingReward
     # If not possible, return 'NOT POSSIBLE'
 
@@ -33,9 +35,11 @@ def question2b():
     """
       Prefer the close exit (+1), but avoiding the cliff (-10).
     """
-    answerDiscount = None
-    answerNoise = None
-    answerLivingReward = None
+    # Policy: E E S _ _ (go East twice, then South to avoid cliff)
+    # Try with some noise to create different behavior
+    answerDiscount = 0.3
+    answerNoise = 0.2
+    answerLivingReward = 0.0
     return answerDiscount, answerNoise, answerLivingReward
     # If not possible, return 'NOT POSSIBLE'
 
@@ -43,9 +47,11 @@ def question2c():
     """
       Prefer the distant exit (+10), risking the cliff (-10).
     """
-    answerDiscount = None
-    answerNoise = None
-    answerLivingReward = None
+    # Policy: E E E E N (go East all the way, then North to +10)
+    # Need very high discount to value distant +10 reward
+    answerDiscount = 0.99
+    answerNoise = 0.0
+    answerLivingReward = 0.0
     return answerDiscount, answerNoise, answerLivingReward
     # If not possible, return 'NOT POSSIBLE'
 
@@ -53,9 +59,11 @@ def question2d():
     """
       Prefer the distant exit (+10), avoiding the cliff (-10).
     """
-    answerDiscount = None
-    answerNoise = None
-    answerLivingReward = None
+    # Policy: N _ _ _ _ (go North immediately to avoid cliff)
+    # Try with some noise to create different behavior
+    answerDiscount = 0.9
+    answerNoise = 0.2
+    answerLivingReward = 0.0
     return answerDiscount, answerNoise, answerLivingReward
     # If not possible, return 'NOT POSSIBLE'
 
@@ -63,9 +71,11 @@ def question2e():
     """
       Avoid both exits and the cliff (so an episode should never terminate).
     """
-    answerDiscount = None
-    answerNoise = None
-    answerLivingReward = None
+    # Policy: all _ (no specific direction, stay in safe area)
+    # Need very high living reward to avoid all terminal states
+    answerDiscount = 0.1
+    answerNoise = 0.0
+    answerLivingReward = 10.0
     return answerDiscount, answerNoise, answerLivingReward
     # If not possible, return 'NOT POSSIBLE'
 
